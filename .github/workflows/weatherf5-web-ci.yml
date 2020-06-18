@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 env:
-  AZURE_WEBAPP_NAME: prod-webapp-weather5    # set this to your application's name
+  AZURE_WEBAPP_NAME: prod-web-weatherf5    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: 'dist'      # set this to the path to your web app project, defaults to the repository root
 
 jobs:
