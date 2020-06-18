@@ -30,8 +30,8 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o dist
       
-    - name: Copy Directory
-      run: cp -r files dist/files
+    - name: Copy Files Directory
+      run: cp -r files dist
       
     - name: Azure WebApp
       uses: Azure/webapps-deploy@v2
