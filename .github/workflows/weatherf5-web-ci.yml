@@ -34,9 +34,9 @@ jobs:
       uses: MadaraUchiha/copy-action@0.0.1
       with:
         # Source file
-        source: './files'
+        source: 'files'
         # Target file
-        target: './dist/files'
+        target: 'dist/files'
       
     - name: Azure WebApp
       uses: Azure/webapps-deploy@v2
