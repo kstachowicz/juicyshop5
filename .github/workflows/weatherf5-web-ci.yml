@@ -1,4 +1,4 @@
-name: .NET Core
+name: F5-webapp-ci
 
 on:
   push:
