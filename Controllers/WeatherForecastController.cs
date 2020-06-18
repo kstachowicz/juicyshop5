@@ -36,5 +36,20 @@ namespace AspNetCoreVueStarter.Controllers
             })
             .ToArray();
         }
+
+        [HttpPost]
+        public IActionResult Post(string data)
+        {
+            try 
+            {
+                    Summaries.Append(data);
+                    return Ok("200");
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+        }
     }
 }
