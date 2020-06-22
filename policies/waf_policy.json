@@ -1,7 +1,7 @@
 {
     "policy": {
       "name": "AppPolicy01",
-      "description": "ISC ENABLEMENT FOR DECLARATIVE AND WEBHOOKS",
+      "description": "ISC ENABLEMENT FOR DECLARATIVE & WEBHOOKS",
       "template": {
         "name": "POLICY_TEMPLATE_RAPID_DEPLOYMENT"
       },
