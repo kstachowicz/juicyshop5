@@ -31,14 +31,14 @@ jobs:
     - uses: kstachowicz/f5-waf-myactions/upload-policy@master
       with:
         waf-address: ${{ secrets.FRONT_ADDRESS }} 
-        policy-filepath: $GITHUB_WORKSPACE/policies/waf_policy.json
+        policy-filepath: ./policies/waf_policy.json
         username : ${{ secrets.WAF_USERNAME }} 
         password: ${{ secrets.WAF_PASSWORD }}
         
     - uses: kstachowicz/f5-waf-myactions/import-policy@master
       with:
         waf-address: ${{ secrets.FRONT_ADDRESS }} 
-        policy-filepath: $GITHUB_WORKSPACE/policies/waf_policy.json
+        policy-filepath: ./policies/waf_policy.json
         username : ${{ secrets.WAF_USERNAME }} 
         password: ${{ secrets.WAF_PASSWORD }}
         policy-name: AppPolicy01
@@ -46,7 +46,7 @@ jobs:
     - uses: kstachowicz/f5-waf-myactions/apply-policy@master
       with:
         waf-address: ${{ secrets.FRONT_ADDRESS }} 
-        policy-filepath: $GITHUB_WORKSPACE/policies/waf_policy.json
+        policy-filepath: ./policies/waf_policy.json
         username : ${{ secrets.WAF_USERNAME }} 
         password: ${{ secrets.WAF_PASSWORD }}
         policy-name: AppPolicy01
@@ -55,7 +55,7 @@ jobs:
     - uses: kstachowicz/f5-waf-myactions/suggestions-pull-request@master
       with:
         waf-address: ${{ secrets.FRONT_ADDRESS }} 
-        policy-filepath: $GITHUB_WORKSPACE/policies/waf_policy.json
+        policy-filepath: ./policies/waf_policy.json
         username : ${{ secrets.WAF_USERNAME }} 
         password: ${{ secrets.WAF_PASSWORD }}
         policy-name: AppPolicy01
