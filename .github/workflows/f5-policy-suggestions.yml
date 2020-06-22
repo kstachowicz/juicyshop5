@@ -1,7 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: f5-policy-verification
-
+name: f5-policy-suggestions
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on: 
@@ -19,29 +18,7 @@ jobs:
     steps:
    
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-     
-    - uses: kstachowicz/f5-waf-myactions/upload-policy@master
-      with:
-        waf-address: ${{ secrets.FRONT_ADDRESS }} 
-        policy-filepath: ./policies/waf_policy.json
-        username : ${{ secrets.WAF_USERNAME }} 
-        password: ${{ secrets.WAF_PASSWORD }}
-        
-    - uses: kstachowicz/f5-waf-myactions/import-policy@master
-      with:
-        waf-address: ${{ secrets.FRONT_ADDRESS }} 
-        username : ${{ secrets.WAF_USERNAME }} 
-        password: ${{ secrets.WAF_PASSWORD }}
-        policy-name: AppPolicy01
-        
-    - uses: kstachowicz/f5-waf-myactions/apply-policy@master
-      with:
-        waf-address: ${{ secrets.FRONT_ADDRESS }} 
-        username : ${{ secrets.WAF_USERNAME }} 
-        password: ${{ secrets.WAF_PASSWORD }}
-        policy-name: AppPolicy01
-        
+    - uses: actions/checkout@v2       
                 
     - uses: kstachowicz/f5-waf-myactions/suggestions-pull-request@master
       with:
