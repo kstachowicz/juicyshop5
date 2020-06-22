@@ -20,15 +20,13 @@ jobs:
    
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world! 
-    
-    - run: echo $GITHUB_WORKSPACE
-    - run: cat $GITHUB_WORKSPACE/policies/waf_policy.json
-      
-
+     
+    - uses: kstachowicz/f5-waf-myactions/upload-policy@master
+      with:
+        waf-address: ${{ secrets.FRONT_ADDRESS }} 
+        policy-filepath: ./policies/waf_policy.json
+        username : ${{ secrets.WAF_USERNAME }} 
+        password: ${{ secrets.WAF_PASSWORD }}
         
     - uses: kstachowicz/f5-waf-myactions/import-policy@master
       with:
