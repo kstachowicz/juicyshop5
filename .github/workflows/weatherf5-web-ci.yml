@@ -3,8 +3,8 @@ name: F5-webapp-ci
 on:
   push:
     branches: [ master ]
-    paths-ignore: 
-      - 'policies/**'
+    paths: 
+      - '!policies/**'
         
 env:
   AZURE_WEBAPP_NAME: prod-web-weatherf5    # set this to your application's name
