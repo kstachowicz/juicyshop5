@@ -26,6 +26,7 @@ jobs:
       run: echo Hello, world! 
     
     - run: echo $GITHUB_WORKSPACE
+    - run: cat $GITHUB_WORKSPACE/policies/waf_policy.json
       
     - uses: kstachowicz/f5-waf-myactions/upload-policy@master
       with:
