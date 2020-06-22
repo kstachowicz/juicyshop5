@@ -31,7 +31,6 @@ jobs:
     
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v2
-      if: ${{ steps.parser.outputs.suggestionsFound == 'true' }}
       with:
         token: ${{ github.token }}
         commit-message: f5 policies suggestions
