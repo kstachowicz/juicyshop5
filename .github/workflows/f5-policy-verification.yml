@@ -14,36 +14,29 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    env:
+      POLICY_FILEPATH: $GITHUB_WORKSPACE/policies/waf_policy.json
+        # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+   
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
     - name: Run a one-line script
       run: echo Hello, world!
-    
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v1.4.2
-      with:
-        node-version: '12'
       
-    - name: Install dependencies
-      run: npm install
-
-   
     - uses: kstachowicz/f5-waf-myactions/upload-policy@master
       with:
         waf-address: ${{ secrets.FRONT_ADDRESS }} 
-        policy-filepath: $GITHUB_WORKSPACE/policies/waf_policy.json
+        policy-filepath: $POLICY_FILEPATH
         username : ${{ secrets.WAF_USERNAME }} 
         password: ${{ secrets.WAF_PASSWORD }}
         
     - uses: kstachowicz/f5-waf-myactions/import-policy@master
       with:
         waf-address: ${{ secrets.FRONT_ADDRESS }} 
-        policy-filepath: $GITHUB_WORKSPACE/policies/waf_policy.json
+        policy-filepath: $POLICY_FILEPATH
         username : ${{ secrets.WAF_USERNAME }} 
         password: ${{ secrets.WAF_PASSWORD }}
         policy-name: AppPolicy01
@@ -51,7 +44,7 @@ jobs:
     - uses: kstachowicz/f5-waf-myactions/apply-policy@master
       with:
         waf-address: ${{ secrets.FRONT_ADDRESS }} 
-        policy-filepath: $GITHUB_WORKSPACE/policies/waf_policy.json
+        policy-filepath: $POLICY_FILEPATH
         username : ${{ secrets.WAF_USERNAME }} 
         password: ${{ secrets.WAF_PASSWORD }}
         policy-name: AppPolicy01
@@ -60,7 +53,7 @@ jobs:
     - uses: kstachowicz/f5-waf-myactions/suggestions-pull-request@master
       with:
         waf-address: ${{ secrets.FRONT_ADDRESS }} 
-        policy-filepath: $GITHUB_WORKSPACE/policies/waf_policy.json
+        policy-filepath: $POLICY_FILEPATH
         username : ${{ secrets.WAF_USERNAME }} 
         password: ${{ secrets.WAF_PASSWORD }}
         policy-name: AppPolicy01
@@ -69,18 +62,6 @@ jobs:
       id: cpr
       uses: peter-evans/create-pull-request@v2
     
-    - uses: actions/checkout@v2
-    - name: Create commits
-      run: |
-        git config user.name 'Peter Evans'
-        git config user.email 'peter-evans@users.noreply.github.com'
-        date +%s > report.txt
-        git commit -am "Modify tracked file during workflow"
-        date +%s > new-report.txt
-        git add -A
-        git commit -m "Add untracked file during workflow"
-    - name: Uncommitted change
-      run: date +%s > report.txt
     
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v2
