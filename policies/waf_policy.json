@@ -31,5 +31,17 @@
             "learnOnlyFromNonBotTraffic": false
         }
     },
-    "modifications": []
+    "modifications": [
+        {
+            "entityChanges": {
+                "type": "explicit"
+            },
+            "entity": {
+                "name": "dat"
+            },
+            "entityKind": "tm:asm:policies:filetypes:filetypestate",
+            "action": "delete",
+            "description": "Delete Disallowed File Type"
+        }
+    ]
 }
