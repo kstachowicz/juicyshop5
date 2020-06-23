@@ -14,7 +14,7 @@ jobs:
     if: ${{ github.event.label.name == 'audit-approved' }}
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+  
         # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
    
@@ -22,6 +22,7 @@ jobs:
     - uses: actions/checkout@v2       
                 
     - uses: kstachowicz/f5-waf-myactions/suggestions-pull-request@master
+      id: suggestionStep
       with:
         waf-address: ${{ secrets.FRONT_ADDRESS }} 
         policy-filepath: ./policies/waf_policy.json
@@ -31,7 +32,7 @@ jobs:
         
     
     - name: Create Pull Request
-      if: ${{steps.parser.outputs.suggestionsFound}}
+      if: ${{steps.suggestionStep.outputs.suggestionsFound}}
       uses: peter-evans/create-pull-request@v2
       with:
         token: ${{ github.token }}
