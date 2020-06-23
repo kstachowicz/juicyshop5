@@ -3,6 +3,12 @@
 name: f5-policy-suggestions
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
+
+# Run workflow every 3 days (cron job format)
+#on:
+#  schedule:
+#    - cron:  '0 0 */3 * *'
+
 on: 
   issues:
     types: [labeled]
