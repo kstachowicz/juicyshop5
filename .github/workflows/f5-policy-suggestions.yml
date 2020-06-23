@@ -32,7 +32,7 @@ jobs:
         
     
     - name: Create Pull Request
-      if: ${{steps.suggestionStep.outputs.suggestionsFound}}
+      if: ${{steps.suggestionStep.outputs.suggestionsFound == "true" }}
       uses: peter-evans/create-pull-request@v2
       with:
         token: ${{ github.token }}
